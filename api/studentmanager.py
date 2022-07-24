@@ -19,29 +19,29 @@ ma = Marshmallow(app)
 # migrate = Migrate(app, db)
 
 
-class Student(db.Model):
-    first_name = db.Column(db.String(80), unique=False,
+class Staff(db.Model):
+    user_name = db.Column(db.String(80), unique=False,
                            nullable=False, primary_key=False)
-    last_name = db.Column(db.String(80), unique=False,
+    password = db.Column(db.String(80), unique=False,
                           nullable=False, primary_key=False)
-    roll_no = db.Column(db.Integer, unique=True,
+    role = db.Column(db.Integer, unique=True,
                         nullable=False, primary_key=True)
-    email = db.Column(db.String, unique=True,
+    userId = db.Column(db.String, unique=True,
                       nullable=False, primary_key=False)
-    phone_number = db.Column(db.Unicode(
+    referral_code_id = db.Column(db.Unicode(
         255), unique=True, nullable=False, primary_key=False)
 
     def __repr__(self):
-        return "<First Name: {}, Last Name: {}, Roll No. {}, Email: {}, Phone: {} >".format(self.first_name, self.last_name, self.roll_no, self.email, self.phone_number)
+        return "<User Name: {}, Role {}, UserId: {}, Password: {}, Referral Code Id: {} >".format(self.user_name, self.user_id, self.role, self.referral_code_id, self.phone_number, self.password)
 
 
-class StudentSchema(ma.Schema):
+class StaffSchema(ma.Schema):
     class Meta:
-        fields = ('first_name', 'last_name',
-                  'roll_no', 'email', 'phone_number')
+        fields = ('user_name', 'user_id',
+                  'role', 'referral_code_id', 'password')
 
 
-student_schema = StudentSchema(many=True)
+staff_schema = StaffSchema(many=True)
 
 
 @app.route('/')
@@ -49,11 +49,11 @@ def start():
     return jsonify('Pong!')
 
 
-@app.route('/getstudents', methods=["GET", "POST"])
+@app.route('/getstaff', methods=["GET", "POST"])
 def home():
-    students = Student.query.all()
-    result = student_schema.dump(students)
-    print(result[0]['roll_no'])
+    staff = Staff.query.all()
+    result = staff_schema.dump(staff)
+    print(result[0]['role'])
     return jsonify(result)
 
 

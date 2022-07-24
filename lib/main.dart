@@ -21,13 +21,13 @@ class _MyAppState extends State<MyApp> {
 
   Future<String> getData() async {
     var response = await http.get(
-        Uri.encodeFull("http://10.0.2.2:5000/getstudents"),
+        Uri.encodeFull("http://10.0.2.2:5000/getstaff"),
         headers: {"Accept": "application/json"});
 
     this.setState(() {
       data = json.decode(response.body);
     });
-    print(data[0]["email"]);
+    print(data[0]["userId"]);
     return "success";
   }
 
@@ -39,11 +39,10 @@ class _MyAppState extends State<MyApp> {
 
   void showStudent(ctx, i) {
     Navigator.of(ctx).pushNamed(DetailScreen.routeName, arguments: {
-      "firstName": data[i]["first_name"].toString(),
-      "lastName": data[i]["last_name"].toString(),
-      "rollNumber": data[i]["roll_no"].toString(),
-      "email": data[i]["email"].toString(),
-      "phoneNumber": data[i]["phone_number"].toString()
+      "userId": data[i]["user_Id"].toString(),
+      "referralCodeId": data[i]["referral_Code_Id"].toString(),
+      "userName": data[i]["user_Name"].toString(),
+      "role": data[i]["user_designation"].toString()
     });
   }
 
@@ -52,7 +51,7 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
-        title: const Text('StudentsDB'),
+        title: const Text('SecondFamilyDB'),
         backgroundColor: Colors.grey[850],
       ),
       body: Padding(
@@ -67,11 +66,11 @@ class _MyAppState extends State<MyApp> {
                   color: Colors.grey[400],
                   child: ListTile(
                     title: Text(
-                      "${data[i]["first_name"]} ${data[i]["last_name"]}",
+                      "${data[i]["user_Id"]}",
                       style: TextStyle(fontSize: 20.0),
                     ),
                     subtitle: Text(
-                      "${data[i]["roll_no"]}",
+                      "${data[i]["user_designation"]}",
                       style: TextStyle(fontSize: 15.0),
                     ),
                     leading: CircleAvatar(

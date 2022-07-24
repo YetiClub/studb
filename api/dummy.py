@@ -1,10 +1,10 @@
 from studentmanager import db, Student
 
-student_1 = Student(first_name='test', last_name='2', roll_no=1234,
-                    email="test2@gmail.com", phone_number=9210938822)
+student_1 = Student(userId='jed@test.com', user_name='jed', user_designation='admin',
+                    password='12345678', referral_code_id=9210938822)
 db.session.add(student_1)
 db.session.commit()
-student_2 = Student(first_name='test', last_name='3', roll_no=8307,
-                    email="test3@gmail.com", phone_number=9371671111)
+student_2 = Student(userId='jed2@test.com', user_name='jed2', user_designation='',
+                    password='12345678', referral_code_id=9210938822)
 db.session.add(student_2)
 db.session.commit()

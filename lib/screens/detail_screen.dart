@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
-  String firstName;
-  String lastName;
-  String rollNumber;
-  String email;
-  String phoneNumber;
+  String userName;
+  String userId;
+  String role;
+  String referralcodeid;
+  String password;
   static const routeName = '/details';
   @override
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context).settings.arguments as Map<String, String>;
-    firstName = routeArgs["firstName"];
-    lastName = routeArgs["lastName"];
-    rollNumber = routeArgs["rollNumber"];
-    email = routeArgs["email"];
-    phoneNumber = routeArgs["phoneNumber"];
+    userName = routeArgs["userName"];
+    userId = routeArgs["userId"];
+    role = routeArgs["role"];
+    referralcodeid = routeArgs["referralcodeid"];
+    password = routeArgs["password"];
 
     return Scaffold(
         backgroundColor: Colors.grey[800],
         appBar: AppBar(
-          title: Text(firstName),
+          title: Text(userName),
           backgroundColor: Colors.grey[850],
         ),
         body: Padding(
@@ -53,7 +53,7 @@ class DetailScreen extends StatelessWidget {
                     width: 20.0,
                   ),
                   Text(
-                    '$firstName $lastName',
+                    '$userName $userId',
                     style: TextStyle(
                       color: Colors.amberAccent[200],
                       letterSpacing: 2.0,
@@ -79,7 +79,7 @@ class DetailScreen extends StatelessWidget {
                     width: 20.0,
                   ),
                   Text(
-                    rollNumber,
+                    role,
                     style: TextStyle(
                       color: Colors.amberAccent[200],
                       letterSpacing: 2.0,
@@ -95,7 +95,7 @@ class DetailScreen extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Text(
-                    'Email:',
+                    'Referral Id:',
                     style: TextStyle(
                       color: Colors.grey,
                       letterSpacing: 2.0,
@@ -105,7 +105,7 @@ class DetailScreen extends StatelessWidget {
                     width: 20.0,
                   ),
                   Text(
-                    email,
+                    referralcodeid,
                     style: TextStyle(
                       color: Colors.amberAccent[200],
                       letterSpacing: 2.0,
@@ -121,7 +121,7 @@ class DetailScreen extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Text(
-                    'Mobile No:',
+                    'Password:',
                     style: TextStyle(
                       color: Colors.grey,
                       letterSpacing: 2.0,
@@ -131,7 +131,7 @@ class DetailScreen extends StatelessWidget {
                     width: 20.0,
                   ),
                   Text(
-                    phoneNumber,
+                    password,
                     style: TextStyle(
                       color: Colors.amberAccent[200],
                       letterSpacing: 2.0,
